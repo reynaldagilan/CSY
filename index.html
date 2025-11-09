@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Certificate Validator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Digital Certificate Validator</h1>
+            <p>Validate X.509 certificates, check chain integrity, expiration dates, and cryptographic authenticity</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <h2>Upload or Paste Certificate</h2>
+                <div class="input-methods">
+                    <div class="method">
+                        <label for="cert-file">Upload Certificate File (.pem, .crt, .cer):</label>
+                        <input type="file" id="cert-file" accept=".pem,.crt,.cer,.pfx" />
+                    </div>
+                    <div class="method">
+                        <label for="cert-text">Or paste certificate content:</label>
+                        <textarea id="cert-text" placeholder="Paste certificate (PEM format)..."></textarea>
+                    </div>
+                </div>
+                <button id="validate-btn" class="btn-primary">Validate Certificate</button>
+            </section>
+
+            <section class="results-section" id="results-section" style="display: none;">
+                <h2>Validation Results</h2>
+
+                <div class="result-tabs">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="details">Details</button>
+                    <button class="tab-btn" data-tab="chain">Chain</button>
+                    <button class="tab-btn" data-tab="verification">Verification</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="overview" class="tab-pane active">
+                        <div class="status-badge" id="status-badge"></div>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <span class="label">Subject:</span>
+                                <span id="subject" class="value"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Issuer:</span>
+                                <span id="issuer" class="value"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Valid From:</span>
+                                <span id="valid-from" class="value"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Valid Until:</span>
+                                <span id="valid-until" class="value"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Serial Number:</span>
+                                <span id="serial" class="value"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Signature Algorithm:</span>
+                                <span id="sig-algo" class="value"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="details" class="tab-pane">
+                        <div class="details-content" id="details-content"></div>
+                    </div>
+
+                    <div id="chain" class="tab-pane">
+                        <div class="chain-display" id="chain-display"></div>
+                    </div>
+
+                    <div id="verification" class="tab-pane">
+                        <div class="verification-checks" id="verification-checks"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="alerts-section" id="alerts-section" style="display: none;">
+                <h2>Issues & Warnings</h2>
+                <div class="alerts-list" id="alerts-list"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Digital Certificate Validator. Secure certificate analysis platform.</p>
+        </footer>
+    </div>
+
+    <script src="validator.js"></script>
+</body>
+</html>
